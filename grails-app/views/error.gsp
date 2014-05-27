@@ -13,6 +13,8 @@
 			<ul class="errors">
 				<li>An error has occurred</li>
 			</ul>
+      <!-- TODO: do some logic here -->
+      <g:renderException exception="${exception}" />
 		</g:else>
 	</body>
 </html>

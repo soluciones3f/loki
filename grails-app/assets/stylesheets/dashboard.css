@@ -10,15 +10,6 @@
 *= require_self
 */
 
-/*
- * Base structure
- */
-
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-    padding-top: 50px;
-}
-
 
 /*
  * Global add-ons

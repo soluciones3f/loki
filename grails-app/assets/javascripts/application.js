@@ -7,7 +7,7 @@
 //
 //= require jquery
 //= require bootstrap
-//= require angular/angular.min
+//= require angularApp
 //= require_self
 
 if (typeof jQuery !== 'undefined') {

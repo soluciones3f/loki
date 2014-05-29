@@ -1,0 +1,22 @@
+{
+  "name": "loki",
+  "version": "0.0.1",
+  "homepage": "https://github.com/soluciones3f/loki",
+  "authors": [
+    "genuinefafa <genuinefafa@gmail.com>"
+  ],
+  "description": "Quotation manager",
+  "main": "?",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.16"
+  }
+}

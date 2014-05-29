@@ -115,3 +115,7 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+grails.assets.excludes="tiny_mce/src/*.js"
+grails.assets.plugin."twitter-bootstrap".excludes="**/*.less"
+grails.assets.plugin."twitter-bootstrap".includes="bootstrap.less"

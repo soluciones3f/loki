@@ -6,7 +6,6 @@
 // to create separate JavaScript files as needed.
 //
 //= require momentjs/moment
-//= require momentjs/lang/es
 //= require angular/angular
 //= require angular-animate/angular-animate
 //= require angular-route/angular-route

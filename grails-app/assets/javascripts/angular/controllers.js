@@ -5,6 +5,20 @@ angular.module(
 );
 
 angular.module('loki.controllers')
+  .controller('CreateQuoteController', [
+    '$scope', '$log', '$location', '$rootScope',
+    function($scope, $log, $location, $rootScope) {
+      $scope.customers =
+        [
+          { name: 'Name', email: 'e@e.tv', VAT: '123', address: 'Beverly' },
+          { name: 'Amigo', email: 'p@p.tv', VAT: '321', address: 'Palo Alto' }
+        ];
+
+      $scope.customer = {};
+
+    }
+  ])
+
 
   .controller('NavBarController', [
     '$scope', '$log', '$location', '$rootScope',

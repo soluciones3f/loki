@@ -13,6 +13,7 @@
 //= require angular-loading-bar/build/loading-bar
 //= require angular-strap/dist/angular-strap.js
 //= require angular-strap/dist/angular-strap.tpl.js
+//= require angular-ui-select/dist/select
 //
 //= require angular/app
 //= require angular/services

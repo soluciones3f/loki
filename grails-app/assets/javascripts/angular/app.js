@@ -20,16 +20,16 @@ angular.module('loki',
   .config(
     ['$routeProvider',
       function($routeProvider) {
-        $routeProvider.when('/quote/new', {
+        $routeProvider.when('/quote/create', {
           title: 'New Quote',
-          templateUrl: 'quote/new'
+          templateUrl: 'quote/partialCreate'
         });
-        $routeProvider.when('/quote/:id', {
+        $routeProvider.when('/quote/show/:id', {
           title: 'Quote',
-          templateUrl: 'quote/show'
+          templateUrl: 'quote/partialShow'
         });
         $routeProvider.otherwise({
-          redirectTo: '/quote/new'
+          redirectTo: '/quote/create'
         });
     }]
   )

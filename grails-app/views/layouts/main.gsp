@@ -78,7 +78,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid" ng-view>
   <g:layoutBody/>
 </div>
 

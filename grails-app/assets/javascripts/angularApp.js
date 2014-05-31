@@ -10,6 +10,8 @@
 //= require angular-animate/angular-animate
 //= require angular-route/angular-route
 //= require angular-resource/angular-resource
+//= require angular-sanitize/angular-sanitize
+//
 //= require angular-loading-bar/build/loading-bar
 //= require angular-strap/dist/angular-strap.js
 //= require angular-strap/dist/angular-strap.tpl.js

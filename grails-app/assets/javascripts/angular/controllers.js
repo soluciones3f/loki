@@ -6,16 +6,24 @@ angular.module(
 
 angular.module('loki.controllers')
   .controller('CreateQuoteController', [
-    '$scope', '$log', '$location', '$rootScope',
-    function($scope, $log, $location, $rootScope) {
-      $scope.customers =
-        [
-          { name: 'Name', email: 'e@e.tv', VAT: '123', address: 'Beverly' },
-          { name: 'Amigo', email: 'p@p.tv', VAT: '321', address: 'Palo Alto' }
-        ];
+    '$scope', '$log', '$location', '$rootScope', '$http',
+    function($scope, $log, $location, $rootScope, $http) {
+
 
       $scope.customer = {};
-
+      $scope.customers = [];
+      $scope.refreshCustomers = function(address) {
+        // Loads all the first time
+        if ($scope.customers.length == 0) {
+          var params = {address: address, sensor: false};
+          return $http.get(
+            'customer.json',
+            {params: params}
+          ).then(function (response) {
+              $scope.customers = response.data
+            });
+        }
+      };
     }
   ])
 

@@ -23,6 +23,7 @@
     "angular-animate": "~1.2.16",
     "angular-strap": "~2.0.2",
     "angular-route": "~1.2.16",
-    "angular-resource": "~1.2.16"
+    "angular-resource": "~1.2.16",
+    "angular-ui-select": "~0.2.1"
   }
 }

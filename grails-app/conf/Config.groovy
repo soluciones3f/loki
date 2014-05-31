@@ -119,3 +119,6 @@ log4j.main = {
 grails.assets.excludes="tiny_mce/src/*.js"
 grails.assets.plugin."twitter-bootstrap".excludes="**/*.less"
 grails.assets.plugin."twitter-bootstrap".includes="bootstrap.less"
+
+grails.plugins.twitterbootstrap.fixtaglib = true
+

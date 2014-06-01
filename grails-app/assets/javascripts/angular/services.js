@@ -11,8 +11,8 @@ angular.module('loki.services', ['ngResource'])
  */
   .factory("Customer", function($resource) {
     return $resource('', {}, {
-      suggest: {method: 'GET', url: 'customer/search?term=:term&page=:page', params: {term:'@term', page:'@page'} },
-      get: {method: 'GET', url: 'customer/get/:id', params: {term:'@id'} }
+      list: {method: 'GET', url: 'customer.json', params: {filter: '@filter'}, isArray: true},
+      get: {method: 'GET', url: 'customer/show/:id.json', params: {id: '@id'} }
     });
   })
 

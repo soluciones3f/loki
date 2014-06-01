@@ -22,7 +22,9 @@
 
     </div>
     <div class="row">
-      <small>{{customer.selected}}</small>
+      <div class="col-md-6">
+        <small>{{customer.selected}}</small>
+      </div>
     </div>
 
   </form>

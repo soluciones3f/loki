@@ -2,12 +2,13 @@
 
   <h3>New Quote</h3>
 
-  <form role="form">
+  <form novalidate role="form" name="quoteForm" ng-submit="submit()">
+    <fieldset>
 
     <div class="form-group row" >
       <label class="col-md-6">
-        <span>Customer: </span>
-        <ui-select ng-model="customer.selected"
+        <span class="control-label">Customer </span>
+        <ui-select ng-model="quote.customer"
                    theme="bootstrap"
                    ng-disabled="disabled"
                    reset-search-input="false">
@@ -19,14 +20,29 @@
           </ui-select-choices>
         </ui-select>
       </label>
-
-    </div>
-    <div class="row">
       <div class="col-md-6">
-        <small>{{customer.selected}}</small>
+        <small>{{quote.customer}}</small>
       </div>
     </div>
 
+    <div class="form-group row">
+      <div class="col-md-12">
+        <label class="control-label col-md-2" for="inputDescription">Description</label>
+        <input type="text" class="form-control col-md-10" id="inputDescription" name="description">
+      </div>
+
+      <div class="col-md-12">
+        <label class="control-label col-md-2" for="inputAmount">Amount</label>
+        <input type="text" class="form-control col-md-4" id="inputAmount" name="amount">
+
+        <label class="control-label col-md-2" for="inputCurrency">Currency</label>
+        <g:currencySelect class="form-control col-md-4" id="inputCurrency" name="currency" />
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    </fieldset>
   </form>
 
 </div>

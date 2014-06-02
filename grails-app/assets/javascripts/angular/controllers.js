@@ -11,9 +11,25 @@ angular.module('loki.controllers')
     function($scope, $log, $location, $rootScope, $http,
       Customer) {
 
-
-      $scope.customer = {};
+      // filling the fields
       $scope.customers = Customer.list();
+
+      // preparing the model
+      $scope.quote = {};
+      $scope.quote.customer = {};
+
+      $scope.$watch('quote.customer', function(newValue, oldValue) {
+          $log.debug('quote.customer new ', newValue)
+          $log.debug('quote.customer old ', oldValue)
+        }
+      );
+
+      $scope.submit = function() {
+        $log.debug("quote", $scope.quoteForm);
+        if ($scope.quoteForm.$valid) {
+          $log.debug("quote is valid");
+        }
+      };
 
     }
   ])

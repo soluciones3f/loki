@@ -7,6 +7,12 @@ class Customer {
     String VAT
     String address
 
+    Date dateCreated
+    Date lastUpdated
+
+    static hasMany = [ quoteLines: QuoteLine, transactions: Transaction ]
+
     static constraints = {
+
     }
 }

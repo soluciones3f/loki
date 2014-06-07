@@ -4,11 +4,11 @@ import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
+ * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(QuoteLine)
-@Mock([Transaction, QuoteLine, Customer])
-class QuoteLineSpec extends Specification {
+@TestFor(QuoteLineService)
+@Mock([Transaction, QuoteLine, Customer, QuoteLineService])
+class QuoteLineServiceSpec extends Specification {
     def customer = null
 
     def setup() {
@@ -18,10 +18,8 @@ class QuoteLineSpec extends Specification {
     def cleanup() {
     }
 
-    void "test transaction due to QuoteLine"() {
-
-        when: 'save quote'
-            log.info "save quote"
+    void "test aproval of quote"() {
+        when: 'aprove quote'
             def q = new QuoteLine()
             q.currency = Currency.getInstance("EUR")
             q.amount = 100
@@ -29,10 +27,11 @@ class QuoteLineSpec extends Specification {
             q.customer = customer
             q.save()
 
-
+            service.aprove(q)
 
         then: 'verify transaction creation'
-            QuoteLine.list().size() == 1
+            Transaction.list().size() == 1
+
 
     }
 }

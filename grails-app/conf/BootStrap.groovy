@@ -1,14 +1,18 @@
 import soluciones3f.loki.*
 
 class BootStrap {
-
-    def init = { servletContext ->
+    public static createStdCus() {
         def cus1 = new Customer(
                 name: "Brenda & Brandon",
                 address: "90210 Beverly Hills, CA",
                 VAT:"223456711",
                 email: "bb@spelling.tv"
-        ).save()
+        )
+        return cus1;
+    }
+
+    def init = { servletContext ->
+        def cus1 = createStdCus().save()
 
         def cus2 = new Customer(
                 name: "Amanda Woodward",
@@ -22,7 +26,8 @@ class BootStrap {
                 amount: 1000,
                 currency: Currency.getInstance("EUR"),
                 customer: cus1
-        )
+        ).save()
+
 
     }
     def destroy = {

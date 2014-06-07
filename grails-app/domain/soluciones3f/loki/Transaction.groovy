@@ -1,6 +1,7 @@
 package soluciones3f.loki
 
 class Transaction {
+    def transactionService
 
     double amount
     Currency currency
@@ -10,6 +11,9 @@ class Transaction {
     // @see convertedAmount() method for more info
     double rate
 
+    TransactionType type // define the type of the transaction
+    Long parentId
+
     Date dateCreated
     Date lastUpdated
 
@@ -18,7 +22,7 @@ class Transaction {
     static hasOne = [ quoteLine: QuoteLine ]
 
     static constraints = {
-
+        parentId nullable: true
     }
 
     double convertedAmount() {
@@ -28,3 +32,8 @@ class Transaction {
             amount * rate;
     }
 }
+
+// natural flow for transactions
+// approve -> wip -> delivered -> invoiced -> paid
+// approve -> wip -> delivered (partially) -> invoiced (partially) -> paid
+public enum TransactionType { APPROVED, WIP, DELIVERED, INVOICED, PAID }

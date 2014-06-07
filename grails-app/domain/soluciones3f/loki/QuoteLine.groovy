@@ -16,4 +16,8 @@ class QuoteLine {
     static constraints = {
 
     }
+
+    def beforeInsert() {
+
+    }
 }

@@ -19,8 +19,8 @@ angular.module('loki.controllers')
       $scope.quote.customer = {};
 
       $scope.$watch('quote.customer', function(newValue, oldValue) {
-          $log.debug('quote.customer new ', newValue)
-          $log.debug('quote.customer old ', oldValue)
+          $log.debug('quote.customer new ', newValue);
+          $log.debug('quote.customer old ', oldValue);
         }
       );
 

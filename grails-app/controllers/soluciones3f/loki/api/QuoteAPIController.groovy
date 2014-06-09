@@ -1,4 +1,4 @@
-package soluciones3f.loki
+package soluciones3f.loki.api
 
 import groovy.json.JsonOutput
 

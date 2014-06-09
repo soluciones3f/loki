@@ -1,6 +1,7 @@
 package soluciones3f.loki
 
 import grails.test.mixin.TestFor
+import soluciones3f.loki.api.QuoteAPIController
 import spock.lang.Specification
 
 /**

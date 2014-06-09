@@ -18,6 +18,26 @@ class QuoteLineServiceSpec extends Specification {
     def cleanup() {
     }
 
+    void "save quote"() {
+        when: 'quote data'
+            def data = [:]
+            data.customer = [ id: customer.id ]
+            data.currency = "EUR"
+            data.amount = 100f
+            data.description = "this is a description"
+
+            service.create(data)
+
+        then: 'verifiy quote creation'
+            QuoteLine.list().size == 1
+            def ql = QuoteLine.list()[0]
+            ql.customer.id == customer.id
+            ql.currency == Currency.getInstance("EUR")
+            ql.amount == 100f
+            ql.description == "this is a description"
+
+    }
+
     void "test aproval of quote"() {
         when: 'aprove quote'
             def q = new QuoteLine()

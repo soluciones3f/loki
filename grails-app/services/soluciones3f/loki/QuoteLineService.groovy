@@ -1,12 +1,20 @@
 package soluciones3f.loki
 
 import grails.transaction.Transactional
+import soluciones3f.loki.core.*
 
 @Transactional
 class QuoteLineService {
 
-    def create() {
+    def create(data) {
+        Customer cus = Customer.get(data.customer.id)
 
+        def ql = new QuoteLine(customer: cus)
+        ql.amount = data.amount.toDouble()
+        ql.currency = Currency.getInstance(data.currency)
+        ql.description = data.description
+
+        ql.save()
     }
 
     def aprove(QuoteLine ql) {

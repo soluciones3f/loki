@@ -3,6 +3,8 @@ package soluciones3f.loki.api
 import groovy.json.JsonOutput
 
 class QuoteAPIController {
+    def quoteLineService
+
     static namespace = "api"
     static responseFormats = ['json', 'xml']
     static defaultAction = "get"
@@ -12,6 +14,14 @@ class QuoteAPIController {
         def json = request.JSON
         log.debug "Cotizacion: ${JsonOutput.prettyPrint(json.toString())}"
 
-        respond json
+        def ql = quoteLineService.create(json)
+
+        respond ql
+    }
+
+    def forCustomer() {
+        log.debug "forCustomer ${params}"
+        def customerId = params.id
+
     }
 }

@@ -18,6 +18,6 @@ class QuoteLine {
     }
 
     def beforeInsert() {
-
+        log.debug("beforeInsert()")
     }
 }

@@ -7,12 +7,12 @@ angular.module(
 angular.module('loki.controllers')
   .controller('CreateQuoteController', [
     '$scope', '$log', '$location', '$rootScope', '$http',
-    'Customer',
+    'CustomerRepository', 'QuoteRepository',
     function($scope, $log, $location, $rootScope, $http,
-      Customer) {
+      CustomerRepository, QuoteRepository) {
 
       // filling the fields
-      $scope.customers = Customer.list();
+      $scope.customers = CustomerRepository.list();
 
       // preparing the model
       $scope.quote = {};
@@ -28,6 +28,17 @@ angular.module('loki.controllers')
         $log.debug("quote", $scope.quoteForm);
         if ($scope.quoteForm.$valid) {
           $log.debug("quote is valid");
+
+          var fnSuccess = function() {
+            $log.debug("fnSucess");
+          }
+
+          var fnError = function() {
+            $log.debug("fnError");
+          }
+
+          QuoteRepository.save($scope.quote, fnSuccess, fnError)
+
         }
       };
 

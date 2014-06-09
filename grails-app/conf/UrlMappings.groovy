@@ -7,6 +7,11 @@ class UrlMappings {
             }
         }
 
+        // Url de las llamadas REST
+        "/api/$controller/$action?/$id?(.${format})?"{
+            namespace = "api"
+        }
+
         "/"(controller:"Home")
         "/default"(view:"/defaultIndex")
         "500"(view:'/error')

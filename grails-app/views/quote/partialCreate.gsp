@@ -28,15 +28,15 @@
     <div class="form-group row">
       <div class="col-md-12">
         <label class="control-label col-md-2" for="inputDescription">Description</label>
-        <input type="text" class="form-control col-md-10" id="inputDescription" name="description">
+        <input type="text" class="form-control col-md-10" id="inputDescription" name="description" ng-model="quote.description">
       </div>
 
       <div class="col-md-12">
         <label class="control-label col-md-2" for="inputAmount">Amount</label>
-        <input type="text" class="form-control col-md-4" id="inputAmount" name="amount">
+        <input type="text" class="form-control col-md-4" id="inputAmount" name="amount" ng-model="quote.amount">
 
         <label class="control-label col-md-2" for="inputCurrency">Currency</label>
-        <g:currencySelect class="form-control col-md-4" id="inputCurrency" name="currency" />
+        <g:currencySelect class="form-control col-md-4" id="inputCurrency" name="currency" ng-model="quote.currency" />
       </div>
     </div>
 

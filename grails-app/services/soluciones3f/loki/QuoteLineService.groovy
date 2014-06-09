@@ -10,7 +10,7 @@ class QuoteLineService {
     }
 
     def aprove(QuoteLine ql) {
-
+        log.debug("will aprove for ${ql.id}")
         def t = new Transaction(
                 quoteLine: ql,
                 currency: ql.currency,

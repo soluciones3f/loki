@@ -9,10 +9,16 @@ angular.module('loki.services', ['ngResource'])
 /**
  * Customer informaction
  */
-  .factory("Customer", function($resource) {
+  .factory("CustomerRepository", function($resource) {
     return $resource('', {}, {
       list: {method: 'GET', url: 'customer.json', params: {filter: '@filter'}, isArray: true},
       get: {method: 'GET', url: 'customer/show/:id.json', params: {id: '@id'} }
+    });
+  })
+
+  .factory("QuoteRepository", function($resource) {
+    return $resource('', {}, {
+      save: {method: 'POST', url: 'api/quoteAPI/save', params: {}}
     });
   })
 

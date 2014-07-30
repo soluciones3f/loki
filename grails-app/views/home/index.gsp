@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Home</title>
-  <meta name="layout" content="main"/>
+  <meta name="layout" content="customMain"/>
 </head>
 
 <body>

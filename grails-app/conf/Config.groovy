@@ -89,6 +89,7 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.plugin.springsecurity.debug.useFilter = true
     }
     production {
         grails.logging.jul.usebridge = false
@@ -104,7 +105,10 @@ log4j.main = {
         console name:'stdout', layout:pattern(conversionPattern: '%c{3} %m%n')
     }
 
-    debug 'grails.app.controllers.soluciones3f.loki',
+    info 'grails.plugin.springsecurity.web.filter.DebugFilter' // grails.plugin.springsecurity.debug.useFilter = true
+
+    debug 'grails.plugin.springsecurity',
+          'grails.app.controllers.soluciones3f.loki',
           'grails.app.service.soluciones3f.loki',
           'grails.app.domain.soluciones3f.loki'
 
@@ -126,4 +130,16 @@ grails.assets.plugin."twitter-bootstrap".excludes="**/*.less"
 grails.assets.plugin."twitter-bootstrap".includes="bootstrap.less"
 
 grails.plugins.twitterbootstrap.fixtaglib = true
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'soluciones3f.loki.auth.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'soluciones3f.loki.auth.UserRole'
+grails.plugin.springsecurity.authority.className = 'soluciones3f.loki.auth.Role'
+// this introuces an infinite loop in /login/auth
+// grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/assets/**':                     ['permitAll'],
+    '/login/**':                      ['permitAll'],
+    '/**':                            ['isFullyAuthenticated()']
+]
 

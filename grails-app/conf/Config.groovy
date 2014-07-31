@@ -107,7 +107,12 @@ log4j.main = {
 
     info 'grails.plugin.springsecurity.web.filter.DebugFilter' // grails.plugin.springsecurity.debug.useFilter = true
 
-    debug 'grails.plugin.springsecurity',
+    debug 'com.odobo',
+          'grails.app.controllers.com.odobo',
+          'grails.app.services.com.odobo',
+          'org.pac4j',
+          'org.springframework.security',
+          'grails.plugin.springsecurity',
           'grails.app.controllers.soluciones3f.loki',
           'grails.app.service.soluciones3f.loki',
           'grails.app.domain.soluciones3f.loki'
@@ -136,10 +141,28 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'soluciones3f.loki
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'soluciones3f.loki.auth.UserRole'
 grails.plugin.springsecurity.authority.className = 'soluciones3f.loki.auth.Role'
 // this introuces an infinite loop in /login/auth
-// grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/assets/**':                     ['permitAll'],
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugin.springsecurity.interceptUrlMap = [
+    '/':                              ['permitAll'],
+    '/index':                         ['permitAll'],
+    '/index.gsp':                     ['permitAll'],
+    '/home/**':                       ['permitAll'],
+ 	'/assets/**':                     ['permitAll'],
     '/login/**':                      ['permitAll'],
+    '/logout/**':                     ['permitAll'],
+    '/api/**':                        ['permitAll'],
     '/**':                            ['isFullyAuthenticated()']
 ]
+grails.plugin.springsecurity.filterChain.chainMap = [
+        '/api/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter', // Stateless chain
+        '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter,-restLogoutFilter,-restAuthenticationFilter'   // Traditional chain
+]
+
+grails.plugin.springsecurity.rest.login.useJsonCredentials = true
+grails.plugin.springsecurity.rest.login.failureStatusCode = 401
+grails.plugin.springsecurity.rest.token.storage.useGorm = true
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'soluciones3f.loki.auth.AuthenticationToken'
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 'token'
+grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'username'
+grails.plugin.springsecurity.rest.token.validation.useBearerToken = false // for pluginVer=>1.4
 

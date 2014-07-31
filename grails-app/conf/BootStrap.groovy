@@ -1,4 +1,7 @@
 import soluciones3f.loki.*
+import soluciones3f.loki.auth.Role
+import soluciones3f.loki.auth.User
+import soluciones3f.loki.auth.UserRole
 
 class BootStrap {
     public static createStdCus() {
@@ -28,8 +31,16 @@ class BootStrap {
                 customer: cus1
         ).save()
 
+        User user = new User(username: "test@test.com", password: "12345678")
+        user.save()
+
+        Role roleUser = new Role(authority: "ROLE_USER")
+        roleUser.save()
+
+        new UserRole(user: user, role: roleUser).save()
 
     }
+
     def destroy = {
     }
 }

@@ -1,10 +1,15 @@
 package soluciones3f.loki
 
+import com.odobo.grails.plugin.springsecurity.rest.token.generation.TokenGenerator
+import com.odobo.grails.plugin.springsecurity.rest.token.storage.TokenStorageService
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import soluciones3f.loki.auth.AuthenticationToken
 
 class HomeController {
     def springSecurityService
+    TokenGenerator tokenGenerator
+    TokenStorageService tokenStorageService
 
     def index() {
         if (!(springSecurityService.isLoggedIn())) {
@@ -22,5 +27,13 @@ class HomeController {
         respond res
     }
 
+    def generateToken() {
+        String tokenValue = tokenGenerator.generateToken()
+        log.debug "Generated token: ${tokenValue}"
+
+        tokenStorageService.storeToken(tokenValue, springSecurityService.principal)
+        def r = [ username: springSecurityService.principal, access_token: tokenValue ]
+        respond r
+    }
 }
 

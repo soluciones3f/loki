@@ -6,9 +6,9 @@ angular.module(
 
 angular.module('loki.controllers')
   .controller('CreateQuoteController', [
-    '$scope', '$log', '$location', '$rootScope', '$http',
+    '$scope', '$log', '$location', '$rootScope', '$http', 'growl',
     'CustomerRepository', 'QuoteRepository',
-    function($scope, $log, $location, $rootScope, $http,
+    function($scope, $log, $location, $rootScope, $http, growl,
       CustomerRepository, QuoteRepository) {
 
       // filling the fields
@@ -18,9 +18,14 @@ angular.module('loki.controllers')
       $scope.quote = {};
       $scope.quote.customer = {};
 
+      var config = {};
+
       $scope.$watch('quote.customer', function(newValue, oldValue) {
-          $log.debug('quote.customer new ', newValue);
-          $log.debug('quote.customer old ', oldValue);
+          if (newValue !== oldValue) {
+            growl.success(newValue.name + " selected.", config);
+            $log.debug('quote.customer new ', newValue);
+            $log.debug('quote.customer old ', oldValue);
+          }
         }
       );
 

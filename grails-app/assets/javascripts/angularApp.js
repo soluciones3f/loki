@@ -12,6 +12,7 @@
 //= require angular-resource/angular-resource
 //= require angular-sanitize/angular-sanitize
 //
+//= require angular-growl-v2/build/angular-growl
 //= require angular-loading-bar/build/loading-bar
 //= require angular-strap/dist/angular-strap.js
 //= require angular-strap/dist/angular-strap.tpl.js

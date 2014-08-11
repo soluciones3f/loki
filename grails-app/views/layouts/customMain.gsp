@@ -77,6 +77,8 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div growl></div>
+
 <div class="container-fluid" ng-view>
   <g:layoutBody/>
 </div>

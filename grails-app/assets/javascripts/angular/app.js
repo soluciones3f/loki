@@ -5,7 +5,7 @@ moment.lang('es');
 // Declare app level module which depends on filters, and services
 var app = angular.module('loki',
     [
-      'ngRoute', 'chieffancypants.loadingBar', 'ngAnimate', 'ngSanitize', 'ui.select',
+      'ngRoute', 'chieffancypants.loadingBar', 'ngAnimate', 'ngSanitize', 'ui.select', 'angular-growl',
       'loki.filters',
       'loki.services',
       'loki.directives',
@@ -31,6 +31,12 @@ var app = angular.module('loki',
         $routeProvider.otherwise({
           redirectTo: '/quote/create'
         });
+    }]
+  )
+
+  .config(
+    ['growlProvider', function (growlProvider) {
+      growlProvider.globalTimeToLive(3000);
     }]
   )
 

@@ -8,6 +8,7 @@
 * compiled file, but it's generally better to create a new file per style scope.
 *
 *= require bootstrap
+*= require angular-growl-v2/build/angular-growl
 *= require angular-loading-bar/build/loading-bar
 *= require angular-ui-select/dist/select
 *= require_self

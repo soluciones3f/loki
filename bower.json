@@ -25,6 +25,7 @@
     "angular-route": "~1.2.16",
     "angular-resource": "~1.2.16",
     "angular-ui-select": "~0.2.1",
-    "angular-sanitize": "~1.2.16"
+    "angular-sanitize": "~1.2.16",
+    "angular-growl-v2": "~0.7.0"
   }
 }

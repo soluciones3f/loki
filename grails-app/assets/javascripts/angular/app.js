@@ -28,6 +28,10 @@ var app = angular.module('loki',
           title: 'Quote',
           templateUrl: 'quote/partialShow'
         });
+        $routeProvider.when('/timesheet', {
+          title: 'TimeSheet',
+          templateUrl: 'timesheet/partialShow'
+        });
         $routeProvider.otherwise({
           redirectTo: '/quote/create'
         });

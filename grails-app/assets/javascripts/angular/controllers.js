@@ -1,4 +1,5 @@
-// Defino cómo serán los controladores
+// First an empty array, the other, add to this array
+// if not, angular will reset the list
 angular.module(
   'loki.controllers',
   []

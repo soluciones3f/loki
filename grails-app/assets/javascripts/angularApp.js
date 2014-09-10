@@ -18,10 +18,6 @@
 //= require angular-strap/dist/angular-strap.tpl.js
 //= require angular-ui-select/dist/select
 //
-//= require angular/app
-//= require angular/services
-//= require angular/controllers
-//= require angular/filters
-//= require angular/directives
+//= require_tree angular
 //
 

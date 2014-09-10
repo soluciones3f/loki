@@ -10,7 +10,11 @@ class Customer {
     Date dateCreated
     Date lastUpdated
 
-    static hasMany = [ quoteLines: QuoteLine, transactions: Transaction ]
+    static hasMany = [
+            quoteLines: QuoteLine,
+            transactions: Transaction,
+            projects: Project
+    ]
 
     static constraints = {
 

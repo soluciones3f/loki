@@ -1,9 +1,7 @@
 angular.module('loki.controllers')
   .controller('TimesheetController', [
-    '$scope', '$log', '$location', '$rootScope', '$http', 'growl',
-    'ProjectRepository', 'CustomerRepository', 'QuoteRepository',
-    function($scope, $log, $location, $rootScope, $http, growl,
-             ProjectRepository, CustomerRepository, QuoteRepository) {
+    '$scope', 'ProjectRepository',
+    function($scope, ProjectRepository) {
 
       $scope.projects = ProjectRepository.list();
 

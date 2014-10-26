@@ -29,5 +29,11 @@ angular.module('loki.services', ['ngResource'])
     });
   })
 
+  .factory("timesheetRepository", function($resource) {
+    return $resource('', {}, {
+      list: { method: 'GET', url: 'timesheet/list.json' },
+    });
+  })
+
 ;
 

@@ -23,12 +23,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="project in timesheet.selectedProjects">
+      <tr ng-repeat="project in timesheet.projects">
         <td>
-          {{project.data.name}}
+          {{project.project}}
         </td>
-        <td ng-repeat="num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]" class="days edit-in-line">
-          <input type="number" class="form-control" min="0" max="24" />
+        <td ng-repeat="hours in project.days track by $index" class="days edit-in-line">
+          <input type="number" value="{{hours}}" class="form-control" min="0" max="24" />
         </td>
       </tr>
     </tbody>

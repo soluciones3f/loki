@@ -2,9 +2,15 @@ angular.module('loki.controllers')
   .controller('TimesheetController', [
     '$scope', 'ProjectRepository', 'timesheetRepository',
     function($scope, ProjectRepository, timesheetRepository) {
-      $scope.timesheet = timesheetRepository.list({from: '20141001', to: '20141014'});
 
+      // Init scope data
+      $scope.timesheet = timesheetRepository.list({from: '20141001', to: '20141014'});
       $scope.projects = ProjectRepository.list();
+
+      // Some functions in scope to easy the programmimg
+      $scope.saveChanges = function() {
+        console.log("Saving changes", $scope.timesheet.projects[0].days[0], $scope.timesheet);
+      }
 
       // it used to be a way a fake way to populate the timesheet
       /*

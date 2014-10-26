@@ -28,11 +28,13 @@
           {{project.project | name:projects}}
         </td>
         <td ng-repeat="hours in project.days track by $index" class="days edit-in-line">
-          <input type="number" value="{{hours}}" class="form-control" min="0" max="24" />
+          <input type="number" ng-model="project.days[$index]" class="form-control" min="0" max="24" />
         </td>
       </tr>
     </tbody>
   </table>
+
+  <button type="button" class="btn btn-primary" ng-click="saveChanges()">Save changes</button>
 
   <div class="form-inline" >
     <div class="form-group col-md-8">

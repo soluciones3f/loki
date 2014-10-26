@@ -12,6 +12,28 @@ angular.module('loki.filters', [])
  * Format a date (or string representation of a date) as a human readable date.
  */
 .filter('dateFormat', dateFormatFilter)
+
+/**
+ * Replace a Project id by its Project name
+ */
+.filter("name", function() {
+  return function toNameFilter(idProject, source) { 
+    // I should use someting like underscore to avoid NIH syndrome
+    var found = null;
+    source.some(function(it) {
+      if( it.id == idProject ) {
+        found = it;
+        return true;
+      }
+
+      return false;
+    });
+
+    if(found != null) return found.name;
+    return "Undefined";
+  };
+})
+
 ;
 
 

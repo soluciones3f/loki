@@ -12,32 +12,20 @@ angular.module('loki.controllers')
         console.log("Saving changes", $scope.timesheet.projects[0].days[0], $scope.timesheet);
       }
 
-      // it used to be a way a fake way to populate the timesheet
-      /*
-      ProjectRepository.list().$promise.then(function (lista) {
-        var selectedProjects = [];
-
-        angular.forEach(lista, function(value, key) {
-          var oneProject = {
-            data: value
-          }
-
-          selectedProjects.push(oneProject);
-        });
-
-
-        $scope.timesheet = {
-          selectedProjects: selectedProjects
-        };
-
-      })
-      */
-
       $scope.addProject = function () {
-        var newProject = {
-          data: $scope.timesheet.newProject
+        // it should only add a new project if it not already in the list
+        var found = $scope.timesheet.projects.some( function(it) { return it.id == $scope.newProject.id } );
+        if(!found) {
+
+          var project = { 
+            id: $scope.newProject.id,
+            days:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          }
+          
+          $scope.timesheet.projects.push( project );
+          
         }
-        $scope.timesheet.selectedProjects.push(newProject);
+        $scope.newProject = null;
       }
 
       $scope.refreshProjects = function() {

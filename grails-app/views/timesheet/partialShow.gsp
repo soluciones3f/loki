@@ -25,7 +25,7 @@
     <tbody>
       <tr ng-repeat="project in timesheet.projects">
         <td>
-          {{project.project | name:projects}}
+          {{project.id | name:projects}}
         </td>
         <td ng-repeat="hours in project.days track by $index" class="days edit-in-line">
           <input type="number" ng-model="project.days[$index]" class="form-control" min="0" max="24" />
@@ -36,10 +36,16 @@
 
   <button type="button" class="btn btn-primary" ng-click="saveChanges()">Save changes</button>
 
+  <hr/>
+  <div class="form-inline" >
+    <select class="form-control" ng-model="newProject" ng-options="project.name for project in projects"></select>
+    <button type="button" class="btn btn-primary" ng-disabled="newProject == null" ng-click="addProject()  ">Add Project</button>
+  </div>
+  <hr/>
   <div class="form-inline" >
     <div class="form-group col-md-8">
       <span class="col-md-3">Add project</span>
-      <ui-select ng-model="timesheet.newProject"
+      <ui-select ng-model="newProject"
                  theme="bootstrap"
                  ng-disabled="disabled"
                  reset-search-input="false">

@@ -17,11 +17,11 @@ angular.module('loki.filters', [])
  * Replace a Project id by its Project name
  */
 .filter("name", function() {
-  return function toNameFilter(idProject, source) { 
+  return function toNameFilter(id, source) { 
     // I should use someting like underscore to avoid NIH syndrome
     var found = null;
     source.some(function(it) {
-      if( it.id == idProject ) {
+      if( it.id == id ) {
         found = it;
         return true;
       }

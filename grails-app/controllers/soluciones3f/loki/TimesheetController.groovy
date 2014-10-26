@@ -9,8 +9,8 @@ class TimesheetController {
     def list(String from, String to) {
         def result = [
             projects: [
-                [project: 1, days: [0, 7, 0, 8, 0, 3, 0, 3, 3, 0, 0, 0, 0, 0]],
-                [project: 2, days: [1, 2, 4, 0, 5, 2, 5, 0, 0, 0, 6, 0, 0, 0]],
+                [id: 1, days: [0, 7, 0, 8, 0, 3, 0, 3, 3, 0, 0, 0, 0, 0]],
+                [id: 2, days: [1, 2, 4, 0, 5, 2, 5, 0, 0, 0, 6, 0, 0, 0]],
             ]
         ]
         render result as JSON

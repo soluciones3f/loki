@@ -14,7 +14,7 @@ class BootStrap {
         return cus1;
     }
 
-    def init = { servletContext ->
+    public void bootstrapData() {
         def cus1 = createStdCus().save()
 
         def cus2 = new Customer(
@@ -24,12 +24,31 @@ class BootStrap {
                 email: "amanda@spelling.tv"
         ).save()
 
+        def proj1 = new Project(
+            name: "Project1-Cust1",
+            customer: cus1
+        ).save()
+
+        def proj2 = new Project(
+                name: "Project2-Cust1",
+                customer: cus1
+        ).save()
+
+        def proj3 = new Project(
+                name: "Project3-Cust2",
+                customer: cus2
+        ).save()
+
         new QuoteLine(
                 description: "Something that the customer really needs",
                 amount: 1000,
                 currency: Currency.getInstance("EUR"),
                 customer: cus1
         ).save()
+    }
+
+    def init = { servletContext ->
+        bootstrapData()
 
         User user = new User(username: "test@test.com", password: "12345678")
         user.save()

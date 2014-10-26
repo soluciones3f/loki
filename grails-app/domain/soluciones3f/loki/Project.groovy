@@ -4,7 +4,7 @@ class Project {
     String name
 
     Date dateCreated
-    Date lastUpdate
+    Date lastUpdated
 
     static belongsTo = [ customer: Customer ]
 

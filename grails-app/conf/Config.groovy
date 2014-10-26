@@ -102,15 +102,15 @@ log4j.main = {
     // Example of changing the log pattern for the default console appender:
     //
     appenders {
-        console name:'stdout', layout:pattern(conversionPattern: '%c{3} %m%n')
+        console name:'stdout', layout:pattern(conversionPattern: '"%5r %-5p %c{3} %l %m%n')
     }
 
-    info 'grails.plugin.springsecurity.web.filter.DebugFilter' // grails.plugin.springsecurity.debug.useFilter = true
+    // info 'grails.plugin.springsecurity.web.filter.DebugFilter' // grails.plugin.springsecurity.debug.useFilter = true
 
-    debug 'grails.plugin.springsecurity',
-          'grails.app.controllers.soluciones3f.loki',
+    debug 'grails.app.controllers.soluciones3f.loki',
           'grails.app.service.soluciones3f.loki',
-          'grails.app.domain.soluciones3f.loki'
+          'grails.app.domain.soluciones3f.loki' // ,
+           // 'grails.plugin.springsecurity'
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP

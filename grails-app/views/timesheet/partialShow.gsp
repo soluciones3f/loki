@@ -41,25 +41,4 @@
     <select class="form-control" ng-model="newProject" ng-options="project.name for project in projects"></select>
     <button type="button" class="btn btn-primary" ng-disabled="newProject == null" ng-click="addProject()  ">Add Project</button>
   </div>
-  <hr/>
-  <div class="form-inline" >
-    <div class="form-group col-md-8">
-      <span class="col-md-3">Add project</span>
-      <ui-select ng-model="newProject"
-                 theme="bootstrap"
-                 ng-disabled="disabled"
-                 reset-search-input="false">
-        <ui-select-match placeholder="Project">{{$select.selected.name}}</ui-select-match>
-        <ui-select-choices repeat="project in projects track by $index"
-                           refresh="refreshProjects($select.search)"
-                           refresh-delay="0">
-          <div ng-bind-html="project.name | highlight: $select.search"></div>
-        </ui-select-choices>
-      </ui-select>
-    <button type="button" class="btn btn-primary" ng-click="addProject()">Confirm</button>
-    </div>
-  </div>
-
-
-
 </div>

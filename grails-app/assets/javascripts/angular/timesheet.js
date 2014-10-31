@@ -5,38 +5,16 @@ angular.module('loki.controllers')
 
       // Init scope data
       $scope.projects = ProjectRepository.list();
-
-      // expand date range here, because ng-repeat does not plays well with array of objects
-      $scope.timesheet = timesheetRepository.list({from: '20141001', to: '20141014'});
-      $scope.timesheet.$promise.then(function(timesheet) {
-        $scope.dateRange = dateRange(timesheet.from, timesheet.to);
-      });
+      $scope.timesheet = _loadTimesheet( moment().startOf('week') );
 
       // Some functions in scope to easy the programmimg
       $scope.saveChanges = function() {
         console.log("Saving changes", $scope.timesheet.projects[0].days[0], $scope.timesheet);
       }
 
-      $scope.movePreviousWeek = function() {
-        var first = moment($scope.timesheet.from, "YYYYMMDD").add(-2, "week");
-        var last = moment(first).add(+2, "week");
-
-        // expand date range here, because ng-repeat does not plays well with array of objects
-        $scope.timesheet = timesheetRepository.list({from: first.format("YYYYMMDD"), to: last.format("YYYYMMDD")});
-        $scope.timesheet.$promise.then(function(timesheet) {
-          $scope.dateRange = dateRange(timesheet.from, timesheet.to);
-        });
-      }
-
-      $scope.moveNextWeek = function() {
-        var first = moment($scope.timesheet.from, "YYYYMMDD").add(+2, "week");
-        var last = moment(first).add(+2, "week");
-
-        // expand date range here, because ng-repeat does not plays well with array of objects
-        $scope.timesheet = timesheetRepository.list({from: first.format("YYYYMMDD"), to: last.format("YYYYMMDD")});
-        $scope.timesheet.$promise.then(function(timesheet) {
-          $scope.dateRange = dateRange(timesheet.from, timesheet.to);
-        });
+      $scope.moveDays = function(offset) {
+        var first = moment($scope.timesheet.from, "YYYYMMDD").add(offset, "days");
+        $scope.timesheet =_loadTimesheet(first);
       }
 
       $scope.addProject = function () {
@@ -53,6 +31,18 @@ angular.module('loki.controllers')
           
         }
         $scope.newProject = null;
+      }
+
+      function _loadTimesheet(first) {
+        var last = moment(first).add(14, "days");
+
+        // expand date range here, because ng-repeat does not plays well with array of objects
+        var resource = timesheetRepository.list({from: first.format("YYYYMMDD"), to: last.format("YYYYMMDD")});
+        resource.$promise.then(function(timesheet) {
+          $scope.dateRange = dateRange(timesheet.from, timesheet.to);
+        });
+
+        return resource;
       }
 
     }

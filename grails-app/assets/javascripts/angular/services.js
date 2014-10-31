@@ -35,5 +35,25 @@ angular.module('loki.services', ['ngResource'])
     });
   })
 
+  /**
+   * Given a from,to dates, creates a array of dates
+   */
+  .factory("dateRange", function() {
+    return function dateRangeFunction(from, to) {
+      // Have to check for this, because sometimes, sometimes it is undefined
+      var result = [];
+      if(from  && to) {
+        var date = moment(from, "YYYYMMDD");
+        var end = moment(to, "YYYYMMDD").add(1, "day");
+
+        while(date.isBefore(end, "day")) {
+          result.push(date);
+          date = moment(date).add(1, "day")
+        }
+      }
+
+      return result;
+    }
+  })
 ;
 

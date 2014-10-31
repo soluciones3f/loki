@@ -19,7 +19,7 @@
     <thead>
       <tr>
         <th>Project</th>
-        <th ng-repeat="num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]">{{num}}</th>
+        <th ng-repeat="num in dateRange">{{num.format("DD")}}</th>
       </tr>
     </thead>
     <tbody>

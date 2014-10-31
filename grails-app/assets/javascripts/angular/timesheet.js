@@ -1,11 +1,16 @@
 angular.module('loki.controllers')
   .controller('TimesheetController', [
-    '$scope', 'ProjectRepository', 'timesheetRepository',
-    function($scope, ProjectRepository, timesheetRepository) {
+    '$scope', 'ProjectRepository', 'timesheetRepository', 'dateRange',
+    function($scope, ProjectRepository, timesheetRepository, dateRange) {
 
       // Init scope data
       $scope.timesheet = timesheetRepository.list({from: '20141001', to: '20141014'});
       $scope.projects = ProjectRepository.list();
+
+      // expand date range here, because ng-repeat does not plays well with array of objects
+      $scope.timesheet.$promise.then(function(timesheet) {
+        $scope.dateRange = dateRange(timesheet.from, timesheet.to);
+      });
 
       // Some functions in scope to easy the programmimg
       $scope.saveChanges = function() {

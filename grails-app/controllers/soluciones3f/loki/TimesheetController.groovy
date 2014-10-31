@@ -8,11 +8,11 @@ class TimesheetController {
     //
     def list(String from, String to) {
         def result = [
+            from: from, 
+            to: to, 
             projects: [
                 [
                     id: 1, 
-                    from: from, 
-                    to: to, 
                     days: [
                         20141001: 0,
                         20141002: 7,
@@ -32,8 +32,6 @@ class TimesheetController {
                 ],
                 [
                     id: 2, 
-                    from: from, 
-                    to: to, 
                     days: [
                         20141001: 2,
                         20141002: 5,

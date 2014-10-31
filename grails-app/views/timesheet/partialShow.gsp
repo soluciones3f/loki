@@ -27,8 +27,8 @@
         <td>
           {{project.id | name:projects}}
         </td>
-        <td ng-repeat="hours in project.days track by $index" class="days edit-in-line">
-          <input type="number" ng-model="project.days[$index]" class="form-control" min="0" max="24" />
+        <td ng-repeat="date in dateRange" class="days edit-in-line">
+          <input type="number" ng-model="project.days[ date.format('YYYYMMDD') ]" class="form-control" min="0" max="24" />
         </td>
       </tr>
     </tbody>

@@ -14,6 +14,7 @@
 <div ng-controller="TimesheetController">
 
   <h3>TimeSheet</h3>
+  <div><button ng-click="movePreviousWeek()">previous</button> <button ng-click="moveNextWeek()">next</button></div>
 
   <table class="table table-bordered table-striped">
     <thead>

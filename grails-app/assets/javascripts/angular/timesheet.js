@@ -55,11 +55,6 @@ angular.module('loki.controllers')
         $scope.newProject = null;
       }
 
-      $scope.refreshProjects = function() {
-
-      }
-
-
     }
   ]);
 

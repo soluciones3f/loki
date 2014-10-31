@@ -20,7 +20,7 @@
     <thead>
       <tr>
         <th>Project</th>
-        <th ng-repeat="num in dateRange">{{num.format("DD")}}</th>
+        <th ng-repeat="num in dateRange" ng-class="dayColor(num)">{{num.format("DD")}}</th>
       </tr>
     </thead>
     <tbody>

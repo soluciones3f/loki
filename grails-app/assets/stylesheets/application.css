@@ -23,4 +23,5 @@ body {
     padding-top: 50px;
 }
 
-
+/* Days Colors */
+.weekend { background-color: #dddddd; }

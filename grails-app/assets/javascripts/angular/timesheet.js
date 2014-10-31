@@ -6,6 +6,12 @@ angular.module('loki.controllers')
       // Init scope data
       $scope.projects = ProjectRepository.list();
       $scope.timesheet = _loadTimesheet( moment().startOf('week') );
+      $scope.dayColor = function(date) {
+        var day = date.day();
+        if(day == 0) return "sunday, weekend";
+        if(day == 6) return "saturday, weekend";
+        return "weekday";
+      }
 
       // Some functions in scope to easy the programmimg
       $scope.saveChanges = function() {

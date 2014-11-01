@@ -5,7 +5,8 @@ angular.module('loki.controllers')
 
       // Init scope data
       $scope.projects = ProjectRepository.list();
-      $scope.timesheet = _loadTimesheet( moment().startOf('week') );
+      _loadTimesheet( moment().startOf('week') );
+
       $scope.dayColor = function(date) {
         var day = date.day();
         if(day == 0) return "sunday, weekend";
@@ -20,7 +21,7 @@ angular.module('loki.controllers')
 
       $scope.moveDays = function(offset) {
         var first = moment($scope.timesheet.from, "YYYYMMDD").add(offset, "days");
-        $scope.timesheet =_loadTimesheet(first);
+        _loadTimesheet(first);
       }
 
       $scope.addProject = function () {
@@ -46,6 +47,7 @@ angular.module('loki.controllers')
         var resource = timesheetRepository.list({from: first.format("YYYYMMDD"), to: last.format("YYYYMMDD")});
         resource.$promise.then(function(timesheet) {
           $scope.dateRange = dateRange(timesheet.from, timesheet.to);
+          $scope.timesheet = resource;
         });
 
         return resource;

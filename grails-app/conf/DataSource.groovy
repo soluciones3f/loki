@@ -20,6 +20,13 @@ environments {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
+
+        dataSource_timesheet {
+            dialect = org.hibernate.dialect.MySQLInnoDBDialect
+            driverClassName = 'com.mysql.jdbc.Driver'
+            url = 'jdbc:mysql://localhost/loki'
+            dbCreate = 'validate'
+        }
     }
     test {
         dataSource {

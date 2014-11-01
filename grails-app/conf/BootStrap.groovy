@@ -24,6 +24,8 @@ class BootStrap {
                 email: "amanda@spelling.tv"
         ).save()
 
+        // TODO: Create dummy data only if it does not exists.
+        /*
         def proj1 = new Project(
             name: "Project1-Cust1",
             customer: cus1
@@ -38,6 +40,7 @@ class BootStrap {
                 name: "Project3-Cust2",
                 customer: cus2
         ).save()
+        */
 
         new QuoteLine(
                 description: "Something that the customer really needs",

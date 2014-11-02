@@ -2,6 +2,7 @@ package soluciones3f.loki
 
 class Project {
     String name
+    String status
 
     // Date dateCreated
     Date lastUpdated
@@ -17,5 +18,6 @@ class Project {
       // mapping to legacy schema
       table 'proyecto'
       name column: 'nombre'
+      status column: 'estado'
     }
 }

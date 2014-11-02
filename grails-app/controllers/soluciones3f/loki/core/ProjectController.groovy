@@ -7,6 +7,6 @@ class ProjectController {
 
     // overrides scaffolded, do not limit results
     def index() {
-        respond Project.list(params)
+        respond Project.findAllByStatus('activo', [sort: 'name'])
     }
 }

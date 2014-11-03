@@ -23,6 +23,15 @@ angular.module('loki.controllers')
         }, 0);
       }
 
+      // send the new value to the server
+      $scope.saveHours = function(date, project) {
+        timesheetRepository.saveHour({ 
+          idProject: project.id, 
+          date: date.format("YYYYMMDD"),
+          hours: project.days[date.format("YYYYMMDD")]
+        })
+      }
+
       // Some functions in scope to easy the programmimg
       $scope.saveChanges = function() {
         console.log("Saving changes", $scope.timesheet.projects[0].days[0], $scope.timesheet);

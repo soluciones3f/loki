@@ -7,11 +7,20 @@ angular.module('loki.controllers')
       $scope.projects = ProjectRepository.list();
       _loadTimesheet( moment().startOf('week') );
 
+      // CSS class for each day category
       $scope.dayColor = function(date) {
         var day = date.day();
         if(day == 0) return "sunday, weekend";
         if(day == 6) return "saturday, weekend";
         return "weekday";
+      }
+
+      // total worked hours per day
+      $scope.columnTotal = function(date) {
+        return $scope.timesheet.projects.reduce(function(carry, item) {
+          var hours = item.days[date.format("YYYYMMDD")] || 0;
+          return carry + hours;
+        }, 0);
       }
 
       // Some functions in scope to easy the programmimg

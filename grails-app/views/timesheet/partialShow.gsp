@@ -33,6 +33,14 @@
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <td ng-repeat="date in dateRange" class="days">
+          {{ columnTotal(date) }}
+         </td>
+      </tr>
+    </tfoot>
   </table>
 
   <button type="button" class="btn btn-primary" ng-click="saveChanges()">Save changes</button>

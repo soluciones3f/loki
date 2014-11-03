@@ -34,17 +34,20 @@ class TimesheetController {
     def saveHour() {
         assert params.idProject && params.date
 
-        // create or update this value in database
         def project = Project.get(params.idProject)
+        Date date = LocalDate.parse(params.date, ISODateTimeFormat.basicDate()).toDate()
+
+        // create or update this value in database
         def work = Work.findByProjectAndDateAndIdUser(
             project, 
-            LocalDate.parse(params.date, ISODateTimeFormat.basicDate()).toDate(),
+            date,
             getIdUser()
         )
         
         if(work) work.hours = params.int("hours")
-        work.save(failOnError: true, flush: true)
-
+        else work = new Work(date: date, idUser: getIdUser(), project: project)
+        
+        work.save()
         render ([result: "success"]) as JSON
     }
 

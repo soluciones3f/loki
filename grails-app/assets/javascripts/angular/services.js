@@ -32,7 +32,7 @@ angular.module('loki.services', ['ngResource'])
   .factory("timesheetRepository", function($resource) {
     return $resource('', {}, {
       list: { method: 'GET', url: 'timesheet/list.json' },
-      saveHour: { method: 'POST', url: 'timesheet/saveHour.json' }
+      saveHour: { method: 'POST', url: 'timesheet/saveHour', headers: {'Content-Type': 'application/x-www-form-urlencoded'} }
     });
   })
 

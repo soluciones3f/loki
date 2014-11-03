@@ -25,11 +25,11 @@ angular.module('loki.controllers')
 
       // send the new value to the server
       $scope.saveHours = function(date, project) {
-        timesheetRepository.saveHour({ 
-          idProject: project.id, 
-          date: date.format("YYYYMMDD"),
-          hours: project.days[date.format("YYYYMMDD")]
-        })
+        timesheetRepository.saveHour( $.param({ 
+                  idProject: project.id, 
+                  date: date.format("YYYYMMDD"),
+                  hours: project.days[date.format("YYYYMMDD")]
+        }) )
       }
 
       // Some functions in scope to easy the programmimg

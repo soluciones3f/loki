@@ -5,7 +5,13 @@ import org.joda.time.LocalDate
 import org.joda.time.format.ISODateTimeFormat
 
 class TimesheetController {
-    private getIdUser() { return 3; }
+    def springSecurityService
+
+    private getIdUser() { 
+        // Le pedimos a spring secrity que nos diga cual es id del usuario actual
+        def principal = springSecurityService.principal
+        principal.id
+    }
 
     //
     // retrieve timesheet information for currently logged user.

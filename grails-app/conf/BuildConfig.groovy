@@ -41,6 +41,10 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+
+        mavenRepo "https://raw.github.com/fernandezpablo85/scribe-java/mvn-repo"
+        mavenRepo "http://repo.spring.io/milestone/"
+
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -71,6 +75,8 @@ grails.project.dependency.resolution = {
 
         // security
         compile ":spring-security-core:2.0-RC4"
+        compile ':spring-security-oauth:2.1.0-SNAPSHOT'
+        compile ':spring-security-oauth-google:0.2'
         /*
         compile ":spring-security-rest:1.3.4", {
             excludes ('cors','spring-security-core')

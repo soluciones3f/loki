@@ -57,10 +57,10 @@ var app = angular.module('loki',
   )
 ;
 
-app.config(function(uiSelectConfig) {
+app.config(['uiSelectConfig', function(uiSelectConfig) {
   console.log("uiSelectConfig", uiSelectConfig);
   uiSelectConfig.theme = 'bootstrap';
-});
+}]);
 
 /**
  * AngularJS default filter with the following expression:

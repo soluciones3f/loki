@@ -15,8 +15,6 @@ class Work {
     Date lastUpdated
 
     static mapping = {
-      datasource 'timesheet'
-
       // mapping to legacy schema
       table 'carga_horaria'
       date column: 'fecha'

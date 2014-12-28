@@ -53,6 +53,8 @@ class BootStrap {
     def init = { servletContext ->
         bootstrapData()
 
+        // If we ever need some test users
+        /*
         User user = new User(username: "test@test.com", password: "12345678")
         user.save()
 
@@ -60,6 +62,7 @@ class BootStrap {
         roleUser.save()
 
         new UserRole(user: user, role: roleUser).save()
+        */
 
     }
 

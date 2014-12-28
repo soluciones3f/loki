@@ -13,8 +13,6 @@ class Project {
     }
 
     static mapping = {
-      datasource 'timesheet'
-
       // mapping to legacy schema
       table 'proyecto'
       name column: 'nombre'

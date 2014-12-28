@@ -126,9 +126,10 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 }
 
-grails.assets.excludes="tiny_mce/src/*.js"
-grails.assets.plugin."twitter-bootstrap".excludes="**/*.less"
-grails.assets.plugin."twitter-bootstrap".includes="bootstrap.less"
+grails.assets.less.compile = 'less4j'
+grails.assets.excludes = ["**/*.less", "/icons/**"]
+grails.assets.plugin."twitter-bootstrap".excludes = ["**/*.less"]
+grails.assets.plugin."twitter-bootstrap".includes = ["bootstrap.less"]
 
 grails.plugins.twitterbootstrap.fixtaglib = true
 

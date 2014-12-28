@@ -70,7 +70,6 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ':scaffolding:2.1.2'
         compile ':cache:1.1.7'
-        compile ':asset-pipeline:1.9.6'
         compile ":joda-time:1.5"
 
         // security
@@ -88,12 +87,13 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
 
-        runtime ':twitter-bootstrap:3.2.1'
+        runtime ':twitter-bootstrap:3.3.1'
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
-        compile ":less-asset-pipeline:1.7.0"
-        compile ":coffee-asset-pipeline:1.7.0"
+        compile ':asset-pipeline:1.9.9'
+        compile ":less-asset-pipeline:1.10.0"
+        compile ":coffee-asset-pipeline:1.9.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
 
         //

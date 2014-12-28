@@ -17,7 +17,6 @@ class TimesheetController {
     // retrieve timesheet information for currently logged user.
     //
     def list(String from, String to) {
-        // TODO: limit to only one user not hardcoded
         def hours = Work.findAllByDateBetweenAndIdUser(
             LocalDate.parse(from, ISODateTimeFormat.basicDate()).toDate(),
             LocalDate.parse(to, ISODateTimeFormat.basicDate()).toDate(),
@@ -33,7 +32,12 @@ class TimesheetController {
             ]
         }
 
-        def result = [ from: from, to: to, projects: days ]
+        def publicHolidays = PublicHoliday.findAllByDateBetween(
+            LocalDate.parse(from, ISODateTimeFormat.basicDate()).toDate(),
+            LocalDate.parse(to, ISODateTimeFormat.basicDate()).toDate(),
+        ).collect { it.date.format("yyyyMMdd") }
+
+        def result = [ from: from, to: to, projects: days, publicHolidays: publicHolidays ]
         render result as JSON
     }
 

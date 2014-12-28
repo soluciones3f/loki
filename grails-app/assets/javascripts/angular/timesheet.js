@@ -8,10 +8,18 @@ angular.module('loki.controllers')
       _loadTimesheet( moment().startOf('week') );
 
       // CSS class for each day category
+      var holidays = [];
       $scope.dayColor = function(date) {
         var day = date.day();
         if(day == 0) return "sunday, weekend";
         if(day == 6) return "saturday, weekend";
+
+        // Search for a better alternative
+        var results = holidays.filter(function(value) { 
+          return value.isSame(date, "day"); 
+        });
+        if(results.length > 0) return "holiday";
+
         return "weekday";
       }
 
@@ -66,6 +74,8 @@ angular.module('loki.controllers')
         resource.$promise.then(function(timesheet) {
           $scope.dateRange = dateRange(timesheet.from, timesheet.to);
           $scope.timesheet = resource;
+
+          holidays = timesheet.publicHolidays.map(function(value) { return moment(value, "YYYYMMDD") });
         });
 
         return resource;

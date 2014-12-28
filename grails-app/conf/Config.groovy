@@ -145,6 +145,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     '/login/**':                      ['permitAll'],
     '/logout/**':                     ['permitAll'],
     '/oauth/**':                      ['permitAll'],
+    '/userAccess/**':                 ['permitAll'],
     '/**':                            ['isFullyAuthenticated()'],
 
 ]
@@ -161,6 +162,7 @@ def appName = grails.util.Metadata.current.'app.name'
 def baseURL = grails.serverURL ?: "http://127.0.0.1:8080/${appName}"
 
 grails.plugin.springsecurity.oauth.domainClass = 'soluciones3f.loki.auth.OAuthID'
+grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri = '/userAccess/createAccount'
 oauth {
   debug = true
   providers {

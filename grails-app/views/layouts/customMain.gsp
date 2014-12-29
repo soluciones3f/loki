@@ -47,6 +47,7 @@
           <ul class="dropdown-menu">
             <li><a href="${createLink(controller: 'Customer', action: 'index')}">Customers list</a></li>
             <li><a href="${createLink(controller: 'Customer', action: 'create')}">Create Customer</a></li>
+            <li><a href="${createLink(controller: 'publicHoliday', action: 'index')}">Public holidays</a></li>
             <li class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li class="divider"></li>

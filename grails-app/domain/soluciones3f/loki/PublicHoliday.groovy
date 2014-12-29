@@ -4,6 +4,7 @@ package soluciones3f.loki
  * Given days off
  */
 class PublicHoliday {
+	long id // without this field, automatic scaffolding does not work
     Date date
 
     static mapping = {

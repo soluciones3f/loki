@@ -54,11 +54,13 @@ class TimesheetController {
             getIdUser()
         )
         
-        if(work) work.hours = params.int("hours")
-        else work = new Work(date: date, idUser: getIdUser(), project: project)
+        if(!work) work = new Work(date: date, idUser: getIdUser(), project: project)
+        work.hours = params.int("hours")
         
         work.save()
-        render ([result: "success"]) as JSON
+        def result = [result: "success"]
+
+        render result as JSON
     }
 
     def index() { }

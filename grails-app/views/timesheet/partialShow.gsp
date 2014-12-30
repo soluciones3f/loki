@@ -14,44 +14,40 @@
 <div ng-controller="TimesheetController">
 
   <h3>TimeSheet</h3>
+  <div><button ng-click="moveDays(-15)">previous</button> <button ng-click="moveDays(15)">next</button></div>
 
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th>Project</th>
-        <th ng-repeat="num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]">{{num}}</th>
+        <th ng-repeat="num in dateRange" ng-class="dayColor(num)">{{num.format("DD")}}</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="project in timesheet.selectedProjects">
+      <tr ng-repeat="project in timesheet.projects">
         <td>
-          {{project.data.name}}
+          {{project.id | name:projects}}
         </td>
-        <td ng-repeat="num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]" class="days edit-in-line">
-          <input type="number" class="form-control" min="0" max="24" />
+        <td ng-repeat="date in dateRange" class="days edit-in-line" ng-class="dayColor(date)">
+          <input type="number" ng-model="project.days[ date.format('YYYYMMDD') ]" ng-change="saveHours(date, project)" class="form-control" min="0" max="24" />
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <td ng-repeat="date in dateRange" class="days" ng-class="dayColor(date)">
+          {{ columnTotal(date) }}
+         </td>
+      </tr>
+    </tfoot>
   </table>
 
+  <button type="button" class="btn btn-primary" ng-click="saveChanges()">Save changes</button>
+
+  <hr/>
   <div class="form-inline" >
-    <div class="form-group col-md-8">
-      <span class="col-md-3">Add project</span>
-      <ui-select ng-model="timesheet.newProject"
-                 theme="bootstrap"
-                 ng-disabled="disabled"
-                 reset-search-input="false">
-        <ui-select-match placeholder="Project">{{$select.selected.name}}</ui-select-match>
-        <ui-select-choices repeat="project in projects track by $index"
-                           refresh="refreshProjects($select.search)"
-                           refresh-delay="0">
-          <div ng-bind-html="project.name | highlight: $select.search"></div>
-        </ui-select-choices>
-      </ui-select>
-    <button type="button" class="btn btn-primary" ng-click="addProject()">Confirm</button>
-    </div>
+    <select class="form-control" ng-model="newProject" ng-options="project.name for project in projects"></select>
+    <button type="button" class="btn btn-primary" ng-disabled="newProject == null" ng-click="addProject()  ">Add Project</button>
   </div>
-
-
-
 </div>

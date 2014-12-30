@@ -5,6 +5,7 @@ class Role {
 	String authority
 
 	static mapping = {
+		table 'rol'
 		cache true
 	}
 

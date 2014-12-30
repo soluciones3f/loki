@@ -90,10 +90,11 @@ environments {
     development {
         grails.logging.jul.usebridge = true
         grails.plugin.springsecurity.debug.useFilter = true
+        grails.serverURL = "http://127.0.0.1:8080/loki"
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://loki.soluciones3f.com.ar"
     }
 }
 
@@ -105,12 +106,12 @@ log4j.main = {
         console name:'stdout', layout:pattern(conversionPattern: '"%5r %-5p %c{3} %l %m%n')
     }
 
-    // info 'grails.plugin.springsecurity.web.filter.DebugFilter' // grails.plugin.springsecurity.debug.useFilter = true
+    // info 'grails.plugin.springsecurity.web.filter.DebugFilter'
 
     debug 'grails.app.controllers.soluciones3f.loki',
           'grails.app.service.soluciones3f.loki',
-          'grails.app.domain.soluciones3f.loki' // ,
-           // 'grails.plugin.springsecurity'
+          'grails.app.domain.soluciones3f.loki'
+          // 'grails.plugin.springsecurity'
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
@@ -125,9 +126,11 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 }
 
-grails.assets.excludes="tiny_mce/src/*.js"
-grails.assets.plugin."twitter-bootstrap".excludes="**/*.less"
-grails.assets.plugin."twitter-bootstrap".includes="bootstrap.less"
+grails.assets.less.compile = 'less4j'
+grails.assets.excludes = ["**/*.less", "/icons/**"]
+grails.assets.plugin."twitter-bootstrap".excludes = ["**/*.less"]
+grails.assets.plugin."twitter-bootstrap".includes = ["bootstrap.less"]
+grails.assets.minifyJs = false
 
 grails.plugins.twitterbootstrap.fixtaglib = true
 
@@ -135,11 +138,44 @@ grails.plugins.twitterbootstrap.fixtaglib = true
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'soluciones3f.loki.auth.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'soluciones3f.loki.auth.UserRole'
 grails.plugin.springsecurity.authority.className = 'soluciones3f.loki.auth.Role'
+
 // this introuces an infinite loop in /login/auth
 // grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/assets/**':                     ['permitAll'],
+    '/springSecurityOAuth/**':        ['permitAll'],
+    '/assets/**':                     ['permitAll'],
     '/login/**':                      ['permitAll'],
-    '/**':                            ['isFullyAuthenticated()']
+    '/logout/**':                     ['permitAll'],
+    '/oauth/**':                      ['permitAll'],
+    '/userAccess/**':                 ['permitAll'],
+    '/**':                            ['isFullyAuthenticated()'],
+
 ]
 
+environments {
+    development {
+      grails.plugin.springsecurity.controllerAnnotations.staticRules['/dbconsole/**'] = ['permitAll']
+    }
+}
+
+
+// Added by the Spring Security OAuth plugin:
+def appName = grails.util.Metadata.current.'app.name'
+def baseURL = grails.serverURL ?: "http://127.0.0.1:8080/${appName}"
+
+grails.plugin.springsecurity.oauth.domainClass = 'soluciones3f.loki.auth.OAuthID'
+grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri = '/userAccess/createAccount'
+oauth {
+  debug = true
+  providers {
+    google {
+      api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+      key = "replace-with-google-developer-key"
+      secret = 'replace-with-google-developer-secret'
+      successUri = '/oauth/google/success'
+      failureUri = '/oauth/google/failure'
+      callback = "${baseURL}/oauth/google/callback"
+      scope = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+    }
+  }
+}

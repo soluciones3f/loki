@@ -11,6 +11,7 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
+	static hasMany = [oAuthIDs: OAuthID]
 	static transients = ['springSecurityService']
 
 	static constraints = {
@@ -19,6 +20,7 @@ class User {
 	}
 
 	static mapping = {
+		table 'usuario'
 		password column: '`password`'
 	}
 

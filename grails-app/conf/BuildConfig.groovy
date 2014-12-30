@@ -41,6 +41,10 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+
+        mavenRepo "https://raw.github.com/fernandezpablo85/scribe-java/mvn-repo"
+        mavenRepo "http://repo.spring.io/milestone/"
+
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -49,7 +53,7 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        // runtime 'mysql:mysql-connector-java:5.1.29'
+        runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
 
         compile "org.springframework:spring-orm:$springVersion"
@@ -66,10 +70,12 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ':scaffolding:2.1.2'
         compile ':cache:1.1.7'
-        compile ':asset-pipeline:1.9.6'
+        compile ":joda-time:1.5"
 
         // security
         compile ":spring-security-core:2.0-RC4"
+        compile ':spring-security-oauth:2.1.0-SNAPSHOT'
+        compile ':spring-security-oauth-google:0.2'
         /*
         compile ":spring-security-rest:1.3.4", {
             excludes ('cors','spring-security-core')
@@ -81,12 +87,13 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
 
-        runtime ':twitter-bootstrap:3.2.1'
+        runtime ':twitter-bootstrap:3.3.1'
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
-        compile ":less-asset-pipeline:1.7.0"
-        compile ":coffee-asset-pipeline:1.7.0"
+        compile ':asset-pipeline:1.9.9'
+        compile ":less-asset-pipeline:1.10.0"
+        compile ":coffee-asset-pipeline:1.9.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
 
         //

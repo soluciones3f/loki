@@ -4,4 +4,9 @@ import soluciones3f.loki.*
 
 class ProjectController {
     static scaffold = Project
+
+    // overrides scaffolded, do not limit results
+    def index() {
+        respond Project.findAllByStatus('activo', [sort: 'name'])
+    }
 }

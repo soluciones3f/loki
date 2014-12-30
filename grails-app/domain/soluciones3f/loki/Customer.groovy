@@ -13,7 +13,7 @@ class Customer {
     static hasMany = [
             quoteLines: QuoteLine,
             transactions: Transaction,
-            projects: Project
+            // projects: Project
     ]
 
     static constraints = {

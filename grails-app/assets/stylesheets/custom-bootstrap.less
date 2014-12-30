@@ -1,1 +1,27 @@
 @import "bootstrap.less";
+
+/* Days Colors */
+@weekend-color: #dadada;
+@workday-color: #efefef;
+@holiday-color: #FCB6B6;
+
+thead, tfoot {
+	.weekend { background-color: @weekend-color; }
+	.holiday { background-color: @holiday-color; }
+	.weekday { background-color: @workday-color; }
+}
+
+tbody {
+	.weekend { 
+		background-color: lighten(@weekend-color, 10%); 
+		input.form-control { background-color: lighten(@weekend-color, 12%); }
+	}
+	.holiday { 
+		background-color: lighten(@holiday-color, 10%); 
+		input.form-control { background-color: lighten(@holiday-color, 12%); }
+	}
+	.weekday { 
+		background-color: lighten(@workday-color, 10%); 
+		input.form-control { background-color: lighten(@workday-color, 12%); }
+	}
+}

@@ -3,7 +3,8 @@
 /* Days Colors */
 @weekend-color: #dadada;
 @workday-color: #efefef;
-@holiday-color: #FCB6B6;
+@holiday-color: #fcb6b6;
+@error-color: fade(red, 10%);
 
 thead, tfoot {
 	.weekend { background-color: @weekend-color; }
@@ -24,4 +25,6 @@ tbody {
 		background-color: lighten(@workday-color, 10%); 
 		input.form-control { background-color: lighten(@workday-color, 12%); }
 	}
+
+	input.form-control.ng-invalid { background-color: @error-color; }
 }

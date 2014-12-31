@@ -13,7 +13,7 @@
 
 <div ng-controller="TimesheetController">
 
-  <h3>TimeSheet</h3>
+  <h3>TimeSheet <small>From {{ dateRange[0] | dateFormat:'MMMM D' }} to {{ dateRange[dateRange.length-1] | dateFormat:'MMMM D' }}</small></h3>
   <div><button ng-click="moveDays(-15)">previous</button> <button ng-click="moveDays(15)">next</button></div>
 
   <table class="table table-bordered table-striped">

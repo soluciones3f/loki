@@ -1,4 +1,4 @@
-package soluciones3f.loki
+    package soluciones3f.loki
 
 import grails.converters.*
 import org.joda.time.LocalDate
@@ -48,18 +48,17 @@ class TimesheetController {
         Date date = LocalDate.parse(params.date, ISODateTimeFormat.basicDate()).toDate()
 
         // create or update this value in database
-        def work = Work.findByProjectAndDateAndIdUser(
+        def work = Work.findOrCreateByProjectAndDateAndIdUser(
             project, 
             date,
             getIdUser()
         )
-        
-        if(!work) work = new Work(date: date, idUser: getIdUser(), project: project)
         work.hours = params.int("hours")
         
-        work.save()
-        def result = [result: "success"]
+        if(work.hours == 0) work.delete()
+        else work.save()
 
+        def result = [result: "success"]
         render result as JSON
     }
 

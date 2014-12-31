@@ -1,6 +1,7 @@
-    package soluciones3f.loki
+package soluciones3f.loki
 
 import grails.converters.*
+import groovy.time.TimeCategory
 import org.joda.time.LocalDate
 import org.joda.time.format.ISODateTimeFormat
 
@@ -17,25 +18,47 @@ class TimesheetController {
     // retrieve timesheet information for currently logged user.
     //
     def list(String from, String to) {
-        def hours = Work.findAllByDateBetweenAndIdUser(
-            LocalDate.parse(from, ISODateTimeFormat.basicDate()).toDate(),
-            LocalDate.parse(to, ISODateTimeFormat.basicDate()).toDate(),
-            getIdUser()
-        )
+        Date fromDate = LocalDate.parse(from, ISODateTimeFormat.basicDate()).toDate()
+        Date toDate = LocalDate.parse(to, ISODateTimeFormat.basicDate()).toDate()
+
+        def hours = Work.findAllByDateBetweenAndIdUser( fromDate, toDate, getIdUser() )
 
         // Group hours by project and transform to final array
         def projects = hours.groupBy { it.project }
         def days = projects.collect { project, work ->
             [
                 id: project.id,
+                name: project.name,
                 days: work.collectEntries { [ it.date.format("yyyyMMdd"), it.hours ] }
             ]
         }
 
-        def publicHolidays = PublicHoliday.findAllByDateBetween(
-            LocalDate.parse(from, ISODateTimeFormat.basicDate()).toDate(),
-            LocalDate.parse(to, ISODateTimeFormat.basicDate()).toDate(),
-        ).collect { it.date.format("yyyyMMdd") }
+        // Add top five projects from previous month if they were not added already
+        def otherProjects = Work.createCriteria().list {
+            eq("idUser", getIdUser())
+            use(TimeCategory) {
+                between("date", fromDate - 1.month, fromDate)
+            }
+            
+            projections {
+                groupProperty("project")
+                sum("hours", "hours")
+            }
+
+            order("hours", "desc")
+            maxResults(10)
+        }
+        otherProjects.each { project ->
+            if(!projects.containsKey(project[0]))
+                days << [id: project[0].id, name: project[0].name ,days: []]
+        }
+
+        // Alfabetic ordering of projects
+        days.sort { it.name }
+
+        def publicHolidays = PublicHoliday.findAllByDateBetween(fromDate, toDate).collect { 
+            it.date.format("yyyyMMdd") 
+        }
 
         def result = [ from: from, to: to, projects: days, publicHolidays: publicHolidays ]
         render result as JSON

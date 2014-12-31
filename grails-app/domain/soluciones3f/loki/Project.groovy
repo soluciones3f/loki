@@ -1,6 +1,9 @@
 package soluciones3f.loki
+import groovy.transform.EqualsAndHashCode
 
+@EqualsAndHashCode(includes="id")
 class Project {
+    long id;
     String name
     String status
 

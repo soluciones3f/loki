@@ -60,6 +60,7 @@ angular.module('loki.controllers')
 
           var project = { 
             id: $scope.newProject.id,
+            name: $scope.newProject.name,
             days:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
           }
           

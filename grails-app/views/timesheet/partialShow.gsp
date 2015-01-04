@@ -26,7 +26,7 @@
     <tbody>
       <tr ng-repeat="project in timesheet.projects">
         <td>
-          {{project.id | name:projects}}
+          {{project.name}}
         </td>
         <td ng-repeat="date in dateRange" class="days edit-in-line" ng-class="dayColor(date)">
           <input type="number" ng-model="project.days[ date.format('YYYYMMDD') ]" ng-change="saveHours(date, project)" class="form-control" min="0" max="24" />

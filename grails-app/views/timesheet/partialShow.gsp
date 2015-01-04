@@ -21,6 +21,7 @@
       <tr>
         <th>Project</th>
         <th ng-repeat="num in dateRange" ng-class="dayColor(num)">{{num.format("DD")}}</th>
+        <th class="days">Sum</th>
       </tr>
     </thead>
     <tbody>
@@ -31,6 +32,9 @@
         <td ng-repeat="date in dateRange" class="days edit-in-line" ng-class="dayColor(date)">
           <input type="number" ng-model="project.days[ date.format('YYYYMMDD') ]" ng-change="saveHours(date, project)" class="form-control" min="0" max="24" />
         </td>
+        <td>
+          {{rowTotal(project)}}
+        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -39,6 +43,7 @@
         <td ng-repeat="date in dateRange" class="days" ng-class="dayColor(date)">
           {{ columnTotal(date) }}
          </td>
+         <td>&nbsp;</td>
       </tr>
     </tfoot>
   </table>

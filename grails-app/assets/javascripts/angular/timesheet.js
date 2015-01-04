@@ -31,6 +31,14 @@ angular.module('loki.controllers')
         }, 0);
       }
 
+      $scope.rowTotal = function(project) {
+        var sum = Object.keys(project.days).reduce(function(prev, currentKey) { 
+          return prev + project.days[currentKey]
+        }, 0);
+
+        return sum?sum:""
+      }
+
       // send the new value to the server
       $scope.saveHours = function(date, project) {
         var hours = project.days[date.format("YYYYMMDD")];

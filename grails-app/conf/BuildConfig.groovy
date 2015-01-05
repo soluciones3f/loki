@@ -65,11 +65,11 @@ grails.project.dependency.resolution = {
 
     plugins {
         // plugins for the build system only
-        build ':tomcat:7.0.54'
+        build ':tomcat:7.0.55'
 
         // plugins for the compile step
         compile ':scaffolding:2.1.2'
-        compile ':cache:1.1.7'
+        compile ':cache:1.1.8'
         compile ":joda-time:1.5"
 
         // security

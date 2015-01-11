@@ -2,7 +2,10 @@
 
 [![Build Status](https://travis-ci.org/soluciones3f/loki.svg?branch=master)](https://travis-ci.org/soluciones3f/loki)
 
-Simple and easy quotation manager
+Timesheet WebApp that will, eventually, support basic CRM features. It is completly designed to be API based and is build using well-known frameworks like:
+ * AngularJS
+ * Bootstrap
+ * SpringSecurity
 
 ## Requirements
 

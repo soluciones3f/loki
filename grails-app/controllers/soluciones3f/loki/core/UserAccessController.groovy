@@ -23,14 +23,26 @@ class UserAccessController extends grails.plugin.springsecurity.oauth.SpringSecu
 
 		def User = springSecurityOAuthService.lookupUserClass()
 		def user = User.findByUsername(oAuthToken.socialId)
-		if(!user) throw Exception("This version of loki does not support new users registrations")
+
+		if(!user) {
+			def allow_user_registration = grailsApplication.config.loki.allow_user_registration?:false
+
+			if (!allow_user_registration) {
+				throw new Exception("This version of loki does not support new users registrations (${oAuthToken.socialId})")
+			} else {
+				user = User.create()
+				user.username = oAuthToken.socialId
+				user.password = "oAuthToken.socialId"
+				user.save();
+			}
+		}
 
 		user.addToOAuthIDs(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: user)
         if (user.validate() && user.save()) {
             oAuthToken = springSecurityOAuthService.updateOAuthToken(oAuthToken, user)
         }
         else {
-        	throw Exception("There was a problem updating the user")
+        	throw new Exception("There was a problem updating the user")
         }
 
         authenticateAndRedirect(oAuthToken, getDefaultTargetUrl())

@@ -163,8 +163,10 @@ environments {
 def appName = grails.util.Metadata.current.'app.name'
 def baseURL = grails.serverURL ?: "http://127.0.0.1:8080/${appName}"
 
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.oauth.domainClass = 'soluciones3f.loki.auth.OAuthID'
 grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri = '/userAccess/createAccount'
+
 oauth {
   debug = true
   providers {
@@ -178,4 +180,8 @@ oauth {
       scope = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
     }
   }
+}
+
+loki {
+    allow_user_registration = false
 }

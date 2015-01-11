@@ -185,3 +185,5 @@ oauth {
 loki {
     allow_user_registration = false
 }
+
+grails.gorm.failOnError = true

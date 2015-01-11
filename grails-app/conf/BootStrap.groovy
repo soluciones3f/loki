@@ -25,21 +25,29 @@ class BootStrap {
         ).save()
 
         // TODO: Create dummy data only if it does not exists.
+        println "Are there any Projects? ${Project.count()}"
+        if ( (Project.count() == 0) ) {
+            def proj1 = new Project(
+                    name: "Project1-Cust1",
+                    customer: cus1,
+                    status: 'activo'
+            ).save()
+
+            def proj2 = new Project(
+                    name: "Project2-Cust1",
+                    customer: cus1,
+                    status: 'activo'
+            ).save()
+
+            def proj3 = new Project(
+                    name: "Project3-Cust2",
+                    customer: cus2,
+                    status: 'activo'
+            ).save()
+
+        }
+
         /*
-        def proj1 = new Project(
-            name: "Project1-Cust1",
-            customer: cus1
-        ).save()
-
-        def proj2 = new Project(
-                name: "Project2-Cust1",
-                customer: cus1
-        ).save()
-
-        def proj3 = new Project(
-                name: "Project3-Cust2",
-                customer: cus2
-        ).save()
         */
 
         new QuoteLine(

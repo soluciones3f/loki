@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title><g:layoutTitle default="Welcome"/> - Loki</title>
+    <title><g:layoutTitle default="Welcome"/> - Loki</title>
 
   <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
   <link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
@@ -43,15 +43,14 @@
         <li ng-class="getClass('/quote/create')"><a href="#/quote/create">Create Quote</a></li>
         <li ng-class="getClass('/timesheet')"><a href="#/timesheet">TimeSheet</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Backend <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Backend <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="${createLink(controller: 'Customer', action: 'index')}">Customers list</a></li>
             <li><a href="${createLink(controller: 'Customer', action: 'create')}">Create Customer</a></li>
+            <li class="divider"></li>
             <li><a href="${createLink(controller: 'publicHoliday', action: 'index')}">Public holidays</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="${createLink(controller: 'Project', action: 'index')}">Customers list</a></li>
           </ul>
         </li>
       </ul>
@@ -62,15 +61,13 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <li><a href="${createLink(controller: 'Profile')}">Profile</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <sec:loggedInUserInfo field="username"/>
+            <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="${createLink(controller: 'Logout')}">Logout</a></li>
           </ul>
         </li>
       </ul>

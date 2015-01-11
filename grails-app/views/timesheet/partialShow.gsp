@@ -14,7 +14,6 @@
 <div ng-controller="TimesheetController">
 
   <h3>TimeSheet <small>From {{ dateRange[0] | dateFormat:'MMMM D' }} to {{ dateRange[dateRange.length-1] | dateFormat:'MMMM D' }}</small></h3>
-  <div><button ng-click="moveDays(-15)">previous</button> <button ng-click="moveDays(15)">next</button></div>
 
   <table class="table table-bordered table-striped">
     <thead>
@@ -45,14 +44,26 @@
          </td>
          <td>&nbsp;</td>
       </tr>
+      <tr>
+        <th>
+          <div class="form-inline" >
+            <select class="form-control" style="width: 50%" ng-model="newProject" ng-options="project.name for project in projects"></select>
+            <button type="button" class="btn btn-primary" ng-disabled="newProject == null" ng-click="addProject()  ">Add Project</button>
+          </div>
+        </th>
+        <th colspan="{{dateRange.length}}">
+          <button type="button" class="btn btn-default btn-xs" ng-click="moveDays(-15)">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Prev
+          </button>
+          <button type="button" class="btn btn-default btn-xs pull-right" ng-click="moveDays(15)">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Next
+          </button>
+        </th>
+      </tr>
     </tfoot>
   </table>
 
-  <button type="button" class="btn btn-primary" ng-click="saveChanges()">Save changes</button>
+  <button type="button" class="btn btn-success pull-right" ng-click="saveChanges()">Force Save</button>
 
-  <hr/>
-  <div class="form-inline" >
-    <select class="form-control" ng-model="newProject" ng-options="project.name for project in projects"></select>
-    <button type="button" class="btn btn-primary" ng-disabled="newProject == null" ng-click="addProject()  ">Add Project</button>
-  </div>
+
 </div>

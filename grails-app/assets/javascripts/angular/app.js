@@ -33,7 +33,7 @@ var app = angular.module('loki',
           templateUrl: 'timesheet/partialShow'
         });
         $routeProvider.otherwise({
-          redirectTo: '/quote/create'
+          redirectTo: '/timesheet'
         });
     }]
   )

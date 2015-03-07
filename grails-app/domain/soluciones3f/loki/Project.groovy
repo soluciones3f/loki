@@ -6,6 +6,7 @@ class Project {
     long id;
     String name
     String status
+    String color
 
     // Date dateCreated
     Date lastUpdated
@@ -20,5 +21,6 @@ class Project {
       table 'proyecto'
       name column: 'nombre'
       status column: 'estado'
+      color column: 'color'
     }
 }

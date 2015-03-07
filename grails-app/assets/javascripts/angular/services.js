@@ -36,6 +36,22 @@ angular.module('loki.services', ['ngResource'])
     });
   }])
 
+  .factory("ReportRepository", ['$http', '$q', function($http, $q) {
+    return {
+      work: function(from, to) { 
+        // Only do request if from and to are valid
+        if(!from || !to) {
+          var deferred = $q.defer();
+          deferred.resolve( { data: [] } );
+          return deferred.promise;
+        };
+        
+        return $http
+          .get('api/reportAPI/work', { params: {from: from, to: to}  })
+      }
+    }
+  }])
+
   /**
    * Given a from,to dates, creates a array of dates
    */

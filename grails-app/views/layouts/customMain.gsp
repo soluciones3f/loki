@@ -50,6 +50,8 @@
             <li class="divider"></li>
             <li><a href="${createLink(controller: 'publicHoliday', action: 'index')}">Public holidays</a></li>
             <li><a href="${createLink(controller: 'Project', action: 'index')}">Projects</a></li>
+            <li class="divider"></li>
+            <li><a href="#/report/workDetail">Work detail report</a></li>
           </ul>
         </li>
       </ul>

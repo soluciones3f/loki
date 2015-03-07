@@ -32,6 +32,7 @@ var app = angular.module('loki',
           title: 'TimeSheet',
           templateUrl: 'timesheet/partialShow'
         });
+        $routeProvider.when("/report/workDetail", { title:'Work Detail', templateUrl: 'report/workDetail' });
         $routeProvider.otherwise({
           redirectTo: '/timesheet'
         });

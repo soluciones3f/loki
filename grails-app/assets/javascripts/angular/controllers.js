@@ -74,4 +74,14 @@ angular.module('loki.controllers')
     }
   ])
 
+  .controller('WorkDetailReportController', ['$scope','ReportRepository', function($scope, ReportRepository) {
+
+    $scope.range = { from: null, to: null }
+    $scope.$watchCollection("range", function(newValue, oldValue) {
+      ReportRepository.work($scope.range.from, $scope.range.to)
+        .then(function(response) { $scope.workdata = response.data });
+      });
+
+  }]);
+
 ;

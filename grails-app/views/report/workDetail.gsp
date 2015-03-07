@@ -1,21 +1,25 @@
+<div class="col-md-offset-4 col-md-8 shadow-background"></div>
 <div ng-controller="WorkDetailReportController">
-  	<h3>Work Detail</h3>
-  	<p>Worked hours by all users in the specified date range.</p>
+  <div class="row">
+    <div class="col-md-4">
+    	<h3>Work Detail</h3>
+    	<p>Worked hours by all users in the specified date range.</p>
 
-  	<fieldet>
-  		<legend>Date range</legend>
-		<div class="form-group">
-	    	<label for="dateFrom">From</label>
-	    	<input type="date" class="form-control" id="dateFrom" placeholder="Enter from date" ng-model="range.from">
-	  	</div>
-		<div class="form-group">
-	    	<label for="dateTo">To</label>
-	    	<input type="date" class="form-control" id="dateTo" placeholder="Enter to date" ng-model="range.to">
-	  	</div>
-  	</fieldet>
+    	<fieldet>
+    		<legend>Date range</legend>
+        <div class="form-group">
+  	    	<label for="dateFrom">From</label>
+  	    	<input type="date" class="form-control" id="dateFrom" placeholder="Enter from date" ng-model="range.from">
+  	  	</div>
+  		  <div class="form-group">
+  	    	<label for="dateTo">To</label>
+  	    	<input type="date" class="form-control" id="dateTo" placeholder="Enter to date" ng-model="range.to">
+  	  	</div>
+    	</fieldet>
+      <button class="btn btn-primary" type="button" loki-export="workdata">Export to Excel</button>
+    </div>
 
-    <div ng-show="workdata.length">
-      <button class="btn btn-primary" type="button" loki-export="workdata">Export</button>
+    <div class="col-md-8" ng-show="workdata.length">
     	<table class="table">
     		<thead>
     			<tr><th>Fecha</th><th>Horas</th><th>Alias</th><th>Id Proyecto</th><th>Proyecto</th></tr>
@@ -31,4 +35,5 @@
     		</tbody>
     	</table>
     </div>
+  </div>
 </div>

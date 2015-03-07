@@ -76,7 +76,10 @@ angular.module('loki.controllers')
 
   .controller('WorkDetailReportController', ['$scope','ReportRepository', function($scope, ReportRepository) {
 
-    $scope.range = { from: null, to: null }
+    var from = moment().subtract(1, "month").startOf("month").format("YYYY-MM-DD");
+    var to = moment().subtract(1, "month").endOf("month").format("YYYY-MM-DD");
+    $scope.range = { from: from, to: to };
+
     $scope.$watchCollection("range", function(newValue, oldValue) {
       ReportRepository.work($scope.range.from, $scope.range.to)
         .then(function(response) { $scope.workdata = response.data });

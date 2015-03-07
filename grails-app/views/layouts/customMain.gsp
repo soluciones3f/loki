@@ -49,8 +49,7 @@
             <li><a href="${createLink(controller: 'Customer', action: 'create')}">Create Customer</a></li>
             <li class="divider"></li>
             <li><a href="${createLink(controller: 'publicHoliday', action: 'index')}">Public holidays</a></li>
-            <li class="divider"></li>
-            <li><a href="${createLink(controller: 'Project', action: 'index')}">Customers list</a></li>
+            <li><a href="${createLink(controller: 'Project', action: 'index')}">Projects</a></li>
           </ul>
         </li>
       </ul>

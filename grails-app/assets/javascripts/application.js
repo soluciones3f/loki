@@ -8,6 +8,9 @@
 //= require jquery
 //= require bootstrap
 //= require angularApp
+//= require js-xlsx/dist/jszip.js
+//= require FileSaver.min.js
+//= require js-xlsx/dist/xlsx.js
 //= require_self
 
 if (typeof jQuery !== 'undefined') {

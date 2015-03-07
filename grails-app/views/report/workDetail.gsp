@@ -14,18 +14,21 @@
 	  	</div>
   	</fieldet>
 
-  	<table class="table">
-  		<thead>
-  			<tr><th>Fecha</th><th>Horas</th><th>Alias</th><th>Id Proyecto</th><th>Proyecto</th></tr>
-  		</thead>
-  		<tbody>
-  			<tr ng-repeat="item in workdata">
-  				<td>{{ item.date }}</td>
-  				<td>{{ item.hours }}</td>
-  				<td>{{ item.username }}</td>
-  				<td>{{ item.project.id }}</td>
-  				<td>{{ item.project.name }}</td>
-  			</tr>
-  		</tbody>
-  	</table>
+    <div ng-show="workdata.length">
+      <button class="btn btn-primary" type="button" loki-export="workdata">Export</button>
+    	<table class="table">
+    		<thead>
+    			<tr><th>Fecha</th><th>Horas</th><th>Alias</th><th>Id Proyecto</th><th>Proyecto</th></tr>
+    		</thead>
+    		<tbody>
+    			<tr ng-repeat="item in workdata">
+    				<td>{{ item.date }}</td>
+    				<td>{{ item.hours }}</td>
+    				<td>{{ item.username }}</td>
+    				<td>{{ item.project.id }}</td>
+    				<td>{{ item.project.name }}</td>
+    			</tr>
+    		</tbody>
+    	</table>
+    </div>
 </div>

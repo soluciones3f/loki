@@ -6,7 +6,7 @@ class Project {
     long id;
     String name
     String status
-    String color
+    String color = "0" // legacy field, but required nonetheless
 
     // Date dateCreated
     Date lastUpdated
@@ -14,6 +14,10 @@ class Project {
     // static belongsTo = [ customer: Customer ]
 
     static constraints = {
+      id()
+      name blank: false
+      status inList: ['activo', 'inactivo', 'suspendido']
+      color display: false
     }
 
     static mapping = {

@@ -26,7 +26,7 @@
     		</thead>
     		<tbody>
     			<tr ng-repeat="item in workdata">
-    				<td>{{ item.date }}</td>
+    				<td>{{ item.date.format("LL") }}</td>
     				<td>{{ item.hours }}</td>
     				<td>{{ item.username }}</td>
     				<td>{{ item.project.id }}</td>

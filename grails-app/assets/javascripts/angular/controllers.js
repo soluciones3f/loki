@@ -82,7 +82,7 @@ angular.module('loki.controllers')
 
     $scope.$watchCollection("range", function(newValue, oldValue) {
       ReportRepository.work($scope.range.from, $scope.range.to)
-        .then(function(response) { $scope.workdata = response.data });
+        .then(function(response) { $scope.workdata = response });
       });
 
   }]);

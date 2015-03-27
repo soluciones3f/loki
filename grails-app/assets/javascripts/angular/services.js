@@ -48,6 +48,9 @@ angular.module('loki.services', ['ngResource'])
         
         return $http
           .get('api/reportAPI/work', { params: {from: from, to: to}  })
+          .then(function(response) {
+            return response.data.map(function(item) { item.date = moment(item.date); return item; })
+          });
       }
     }
   }])

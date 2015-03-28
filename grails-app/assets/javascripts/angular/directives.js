@@ -41,10 +41,15 @@ angular.module('loki.directives', ["loki.services"])
     }
 
     // Abstraction to create a Worksheet
-    var Worksheet = function() {  }
+    var Worksheet = function() { this.UNEXPLICABLE_EXCEL_EPOCH = moment([1899, 11, 30]); }
     Worksheet.prototype.setCell = function( ref, value ) {
       this[ref] = { v: value, t: "s" }
       if(typeof value == "number") this[ref].t = "n"
+      else if(typeof value == "object") {
+        this[ref].t = "n";
+        this[ref].v = value.diff(this.UNEXPLICABLE_EXCEL_EPOCH, "days")
+        this[ref].z = 'd-mmm-yy';
+      }
     }
 
     function generateWorkbook(data) {

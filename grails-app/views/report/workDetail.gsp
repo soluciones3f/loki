@@ -22,15 +22,14 @@
     <div class="col-md-8" ng-show="workdata.length">
     	<table class="table">
     		<thead>
-    			<tr><th>Fecha</th><th>Horas</th><th>Alias</th><th>Id Proyecto</th><th>Proyecto</th></tr>
+    			<tr><th>Fecha</th><th>Alias</th><th>Proyecto</th><th>Horas</th></tr>
     		</thead>
     		<tbody>
     			<tr ng-repeat="item in workdata">
     				<td>{{ item.date.format("LL") }}</td>
-    				<td>{{ item.hours }}</td>
     				<td>{{ item.username }}</td>
-    				<td>{{ item.project.id }}</td>
     				<td>{{ item.project.name }}</td>
+    				<td>{{ item.hours }}</td>
     			</tr>
     		</tbody>
     	</table>

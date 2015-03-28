@@ -79,7 +79,7 @@ angular.module('loki.directives', ["loki.services"])
       worksheet["!ref"]  = "A1:E" + (data.length+1);
 
       // Download excel file
-      workbook.save("test.xlsx");
+      workbook.save("report_detail.xlsx");
     }
 
     function linkFunction(scope, element, attrs) {

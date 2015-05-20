@@ -43,6 +43,8 @@ oauth {
   }
 }
 ```
+## Trello 
 
+We also use Trello in order to priorize massive new features long overdue. It is public and anyone [can access is here](https://trello.com/b/gxjc9bpU/loki-presupuestos-proyectos)
 
 

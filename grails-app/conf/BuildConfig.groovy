@@ -65,7 +65,7 @@ grails.project.dependency.resolution = {
 
     plugins {
         // plugins for the build system only
-        build ':tomcat:7.0.55'
+        build ':tomcat:7.0.55.3'
 
         // plugins for the compile step
         compile ':scaffolding:2.1.2'
@@ -83,7 +83,7 @@ grails.project.dependency.resolution = {
         } */
 
         // plugins needed at runtime but not for compilation
-        runtime ':hibernate4:4.3.5.5' // or ':hibernate:3.6.10.17'
+        runtime ':hibernate4:4.3.10' // or ':hibernate:3.6.10.19'
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
 
@@ -91,6 +91,7 @@ grails.project.dependency.resolution = {
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
+        // Recommended: compile ':asset-pipeline:2.1.5'
         compile ':asset-pipeline:1.9.9'
         compile ":less-asset-pipeline:1.10.0"
         compile ":coffee-asset-pipeline:1.9.0"

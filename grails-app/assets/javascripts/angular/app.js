@@ -6,6 +6,7 @@ moment.lang('es');
 var app = angular.module('loki',
     [
       'ngRoute', 'chieffancypants.loadingBar', 'ngAnimate', 'ngSanitize', 'ui.select', 'angular-growl',
+      'mgcrea.ngStrap',
       'loki.filters',
       'loki.services',
       'loki.directives',

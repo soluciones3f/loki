@@ -78,11 +78,28 @@ angular.module('loki.controllers')
 
     var from = moment().subtract(1, "month").startOf("month").format("YYYY-MM-DD");
     var to = moment().subtract(1, "month").endOf("month").format("YYYY-MM-DD");
+
     $scope.range = { from: from, to: to };
+    $scope.selectedView = "raw"
 
     $scope.$watchCollection("range", function(newValue, oldValue) {
       ReportRepository.work($scope.range.from, $scope.range.to)
-        .then(function(response) { $scope.workdata = response });
+        .then(function(response) { 
+          $scope.workdata = response 
+
+          // Adapt workdata for project view.
+          $scope.projects = response.reduce(function(previous, current) {
+            var data = previous[current.project.name];
+            if( data == null) 
+              data = { name: current.project.name, total: 0, items: [] };
+
+            data.total = data.total + current.hours;
+            data.items.push(current);
+
+            previous[current.project.name] = data;
+            return previous;
+          }, {});
+        });
       });
 
   }]);
